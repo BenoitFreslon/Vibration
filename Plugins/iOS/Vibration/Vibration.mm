@@ -29,17 +29,16 @@
     return !(USING_IPAD);
 }
 + (void)    vibrate {
-    AudioServicesPlaySystemSound(1352);
+    AudioServicesPlaySystemSoundWithCompletion(1352, NULL));
 }
-
 + (void)    vibratePeek {
-    AudioServicesPlaySystemSound(1519); // Actuate `Peek` feedback (weak boom)
+    AudioServicesPlaySystemSoundWithCompletion(1519, NULL)); // Actuate `Peek` feedback (weak boom)
 }
 + (void)    vibratePop {
-    AudioServicesPlaySystemSound(1520); // Actuate `Pop` feedback (strong boom)
+    AudioServicesPlaySystemSoundWithCompletion(1520, NULL)); // Actuate `Pop` feedback (strong boom)
 }
 + (void)    vibrateNope {
-    AudioServicesPlaySystemSound(1521); // Actuate `Nope` feedback (series of three weak booms)
+    AudioServicesPlaySystemSoundWithCompletion(1521, NULL)); // Actuate `Nope` feedback (series of three weak booms)
 }
 
 @end
@@ -57,7 +56,7 @@ extern "C" {
     }
  
     void    _Vibrate () {
-        [Vibration hasVibrator];
+        [Vibration vibrate];
     }
     
     void    _VibratePeek () {
