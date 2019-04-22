@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Vibration
@@ -59,14 +59,12 @@ public class Vibration
 
     public static bool HasVibrator ()
     {
-#if UNITY_ANDROID
-        string Context_VIBRATOR_SERVICE = contextClass.GetStatic<string> ( "VIBRATOR_SERVICE" );
-        AndroidJavaObject systemService = context.Call<AndroidJavaObject> ( "getSystemService", Context_VIBRATOR_SERVICE );
-        if ( systemService.Call<bool> ( "hasVibrator" ) ) {
+#if UNITY_ANDROID 
+        if (vibrator.Call<bool> ( "hasVibrator" ) ) {
             return true;
         } else
             return false;
-#elif UNITY_IOS
+#elif UNITY_IOS 
         return _HasVibratior();
 #endif
     }
