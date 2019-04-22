@@ -8,15 +8,15 @@ Use custom vibrations on mobile.
 
 **iOS Only**
 
-* Pop vibration (iPhone 6 minimum)
+* Pop vibration: weak boom (iPhone 6 minimum)
 
 `Vibration.VibratePop();`
 
-* Peek vibration (iPhone 6 minimum)
+* Peek vibration: strong boom (iPhone 6 minimum)
 
 `Vibration.VibratePeek();`
 
-* Nope vibration (iPhone 6 minimum)
+* Nope vibration: series of three weak booms (iPhone 6 minimum)
 
 `Vibration.VibrateNope();`
 
