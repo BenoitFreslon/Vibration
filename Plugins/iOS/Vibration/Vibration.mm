@@ -29,16 +29,16 @@
     return !(USING_IPAD);
 }
 + (void)    vibrate {
-    AudioServicesPlaySystemSoundWithCompletion(1352, NULL));
+    AudioServicesPlaySystemSoundWithCompletion(1352, NULL);
 }
 + (void)    vibratePeek {
-    AudioServicesPlaySystemSoundWithCompletion(1519, NULL)); // Actuate `Peek` feedback (weak boom)
+    AudioServicesPlaySystemSoundWithCompletion(1519, NULL); // Actuate `Peek` feedback (weak boom)
 }
 + (void)    vibratePop {
-    AudioServicesPlaySystemSoundWithCompletion(1520, NULL)); // Actuate `Pop` feedback (strong boom)
+    AudioServicesPlaySystemSoundWithCompletion(1520, NULL); // Actuate `Pop` feedback (strong boom)
 }
 + (void)    vibrateNope {
-    AudioServicesPlaySystemSoundWithCompletion(1521, NULL)); // Actuate `Nope` feedback (series of three weak booms)
+    AudioServicesPlaySystemSoundWithCompletion(1521, NULL); // Actuate `Nope` feedback (series of three weak booms)
 }
 
 @end
