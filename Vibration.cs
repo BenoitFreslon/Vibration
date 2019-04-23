@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.InteropServices;
+
 
 public class Vibration
 {
@@ -7,19 +9,19 @@ public class Vibration
 #if UNITY_IOS
 
     [DllImport ( "__Internal" )]
-    private static extern bool _HasVibrator ();
+    public static extern bool _HasVibrator ();
 
     [DllImport ( "__Internal" )]
-    private static extern void _Vibrate ();
+    public static extern void _Vibrate ();
 
     [DllImport ( "__Internal" )]
-    private static extern void _VibratePop ();
+    public static extern void _VibratePop ();
 
     [DllImport ( "__Internal" )]
-    private static extern void _VibratePeek ();
+    public static extern void _VibratePeek ();
 
     [DllImport ( "__Internal" )]
-    private static extern void _VibrateNope ();
+    public static extern void _VibrateNope ();
 #endif
 
 #if UNITY_ANDROID
@@ -65,7 +67,7 @@ public class Vibration
         } else
             return false;
 #elif UNITY_IOS 
-        return _HasVibratior();
+        return _HasVibrator();
 #endif
     }
 
@@ -75,4 +77,20 @@ public class Vibration
             vibrator.Call ( "cancel" );
 #endif
     }
+
+#if UNITY_IOS
+    public static void VibratePop()
+    {
+        _VibratePop();
+    }
+    public static void VibratePeek ()
+    {
+        _VibratePeek();
+    }
+
+    public static void VibrateNope ()
+    {
+        _VibrateNope();
+    }
+#endif
 }
