@@ -4,7 +4,7 @@ Use custom vibrations on mobile.
 
 **iOS and Android**
 
-* Use `Vibration.Vibrate();` for a 300ms vibration
+* Use `Vibration.Vibrate();` for a default 500ms vibration
 
 **iOS Only**
 
