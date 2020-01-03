@@ -4,19 +4,17 @@ Use custom vibrations on mobile.
 
 **iOS and Android**
 
-* Use `Vibration.Vibrate();` for a default 500ms vibration
+* Use `Vibration.Vibrate();` for a classic default ~400ms vibration
 
-**iOS Only**
-
-* Pop vibration: weak boom (only available with the haptic engine: iPhone 6s minimum)
+* Pop vibration: weak boom (For iOS: only available with the haptic engine. iPhone 6s minimum)
 
 `Vibration.VibratePop();`
 
-* Peek vibration: strong boom (only available with the haptic engine: iPhone 6s minimum)
+* Peek vibration: strong boom (For iOS: only available on iOS with the haptic engine. iPhone 6s minimum)
 
 `Vibration.VibratePeek();`
 
-* Nope vibration: series of three weak booms (only available with the haptic engine: iPhone 6s minimum)
+* Nope vibration: series of three weak booms (For iOS: only available with the haptic engine. iPhone 6s minimum)
 
 `Vibration.VibrateNope();`
 
@@ -31,7 +29,7 @@ Use custom vibrations on mobile.
 
 ```
 long [] pattern = { 0, 1000, 1000, 1000, 1000 };
-Vibration.Vibrate ( pattern, 0 );
+Vibration.Vibrate ( pattern, -1 );
 ```
 
 * Cancel

@@ -29,45 +29,62 @@ public static class Vibration
 
     [DllImport ( "__Internal" )]
     private static extern void _VibrateNope ();
+#endif
 
-    ///<summary>
-    ///Only on iOS
-    ///</summary>
+	///<summary>
+	/// Tiny pop vibration
+	///</summary>
     public static void VibratePop ()
     {
+		#if UNITY_IOS && !UNITY_EDITOR
         _VibratePop ();
+		#elif UNITY_ANDROID  && !UNITY_EDITOR
+		Vibrate(15);
+		#endif
     }
-
-    ///<summary>
-    ///Only on iOS
-    ///</summary>
+	///<summary>
+	/// Small peek vibration
+	///</summary>
     public static void VibratePeek ()
     {
+		#if UNITY_IOS && !UNITY_EDITOR
         _VibratePeek ();
+		#elif UNITY_ANDROID  && !UNITY_EDITOR
+		Vibrate ( 25 );
+		#endif
     }
-
-    ///<summary>
-    ///Only on iOS
-    ///</summary>
+	///<summary>
+	/// 3 small vibrations
+	///</summary>
     public static void VibrateNope ()
     {
+		#if UNITY_IOS && !UNITY_EDITOR
         _VibrateNope ();
+		#elif UNITY_ANDROID  && !UNITY_EDITOR
+		long [] pattern = { 0, 5, 5, 5 };
+		Vibrate( pattern, -1 );
+		#endif
     }
-#endif
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 	public static AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 	public static AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 	public static AndroidJavaObject vibrator =currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
 	public static AndroidJavaObject context = currentActivity.Call<AndroidJavaObject>("getApplicationContext");
-
+#endif
 	///<summary>
 	/// Only on Android
 	/// https://developer.android.com/reference/android/os/Vibrator.html#vibrate(long)
 	///</summary>
 	public static void Vibrate(long milliseconds)
 	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		vibrator.Call("vibrate", milliseconds);
+		#elif UNITY_IOS && !UNITY_EDITOR
+        Handheld.Vibrate();
+		#else
+		Handheld.Vibrate();
+		#endif
 	}
 
 	///<summary>
@@ -76,7 +93,13 @@ public static class Vibration
 	///</summary>
 	public static void Vibrate(long[] pattern, int repeat)
 	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		vibrator.Call("vibrate", pattern, repeat);
+		#elif UNITY_IOS && !UNITY_EDITOR
+        Handheld.Vibrate();
+		#else
+		Handheld.Vibrate();
+		#endif
 	}
 
 	///<summary>
@@ -84,9 +107,10 @@ public static class Vibration
 	///</summary>
 	public static void Cancel()
 	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		vibrator.Call("cancel");
+		#endif
 	}
-#endif
 
 	public static bool HasVibrator()
 	{
@@ -111,9 +135,6 @@ public static class Vibration
 
 	public static void Vibrate()
 	{
-#if UNITY_EDITOR
-		Debug.Log("Bzzzt! Cool vibration!");
-#endif
 		Handheld.Vibrate();
 	}
 }
