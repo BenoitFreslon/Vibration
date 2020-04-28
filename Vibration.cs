@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////////////
-//  
+//
 // @author Benoît Freslon @benoitfreslon
 // https://github.com/BenoitFreslon/Vibration
 // https://benoitfreslon.com
@@ -78,6 +78,7 @@ public static class Vibration
 	///</summary>
 	public static void Vibrate(long milliseconds)
 	{
+#if !UNITY_WEBGL
 		#if UNITY_ANDROID && !UNITY_EDITOR
 		vibrator.Call("vibrate", milliseconds);
 		#elif UNITY_IOS && !UNITY_EDITOR
@@ -85,6 +86,7 @@ public static class Vibration
 		#else
 		Handheld.Vibrate();
 		#endif
+#endif
 	}
 
 	///<summary>
@@ -93,6 +95,7 @@ public static class Vibration
 	///</summary>
 	public static void Vibrate(long[] pattern, int repeat)
 	{
+#if !UNITY_WEBGL
 		#if UNITY_ANDROID && !UNITY_EDITOR
 		vibrator.Call("vibrate", pattern, repeat);
 		#elif UNITY_IOS && !UNITY_EDITOR
@@ -100,6 +103,7 @@ public static class Vibration
 		#else
 		Handheld.Vibrate();
 		#endif
+#endif
 	}
 
 	///<summary>
@@ -135,6 +139,8 @@ public static class Vibration
 
 	public static void Vibrate()
 	{
+#if !UNITY_WEBGL
 		Handheld.Vibrate();
+#endif
 	}
 }
