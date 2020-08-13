@@ -2,6 +2,12 @@
 Native plugin for Unity for iOS and Android.
 Use custom vibrations on mobile.
 
+# Installation
+
+Copy the `Plugins` folder in your Unity3D `Assets` folder.
+
+# Use
+
 **iOS and Android**
 
 * Use `Vibration.Vibrate();` for a classic default ~400ms vibration
