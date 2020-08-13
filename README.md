@@ -4,7 +4,7 @@ Use custom vibrations on mobile.
 
 # Installation
 
-Copy the `Plugins` folder in your Unity3D `Assets` folder.
+Copy the entire `Vibration` folder in your Unity3D `Assets` folder.
 
 # Use
 
