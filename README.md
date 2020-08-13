@@ -12,15 +12,15 @@ Copy the entire `Vibration` folder in your Unity3D `Assets` folder.
 
 * Use `Vibration.Vibrate();` for a classic default ~400ms vibration
 
-* Pop vibration: weak boom (For iOS: only available with the haptic engine. iPhone 6s minimum)
+* Pop vibration: weak boom (For iOS: only available with the haptic engine. iPhone 6s minimum or Android)
 
 `Vibration.VibratePop();`
 
-* Peek vibration: strong boom (For iOS: only available on iOS with the haptic engine. iPhone 6s minimum)
+* Peek vibration: strong boom (For iOS: only available on iOS with the haptic engine. iPhone 6s minimum or Android)
 
 `Vibration.VibratePeek();`
 
-* Nope vibration: series of three weak booms (For iOS: only available with the haptic engine. iPhone 6s minimum)
+* Nope vibration: series of three weak booms (For iOS: only available with the haptic engine. iPhone 6s minimum or Android)
 
 `Vibration.VibrateNope();`
 
