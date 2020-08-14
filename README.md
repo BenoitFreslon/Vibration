@@ -1,12 +1,21 @@
 # Vibration
+
 Native plugin for Unity for iOS and Android.
 Use custom vibrations on mobile.
 
 # Installation
 
-Copy the entire `Vibration` folder in your Unity3D `Assets` folder.
+Copy and Postethe entire `Vibration` folder in your Unity3D `Assets` folder.
 
 # Use
+
+## Initiatlisation
+
+Initialize the plugin with this line before using vibrations:
+
+`Vibration.Init();`
+
+## Vibrations
 
 **iOS and Android**
 
