@@ -17,37 +17,45 @@ Initialize the plugin with this line before using vibrations:
 
 ## Vibrations
 
-**iOS and Android**
+### iOS and Android
 
-* Use `Vibration.Vibrate();` for a classic default ~400ms vibration
+#### Default vibration
 
-* Pop vibration: weak boom (For iOS: only available with the haptic engine. iPhone 6s minimum or Android)
+Use `Vibration.Vibrate();` for a classic default ~400ms vibration
+
+#### Pop vibration
+
+Pop vibration: weak boom (For iOS: only available with the haptic engine. iPhone 6s minimum or Android)
 
 `Vibration.VibratePop();`
 
-* Peek vibration: strong boom (For iOS: only available on iOS with the haptic engine. iPhone 6s minimum or Android)
+#### Peek Vibration
+
+Peek vibration: strong boom (For iOS: only available on iOS with the haptic engine. iPhone 6s minimum or Android)
 
 `Vibration.VibratePeek();`
 
-* Nope vibration: series of three weak booms (For iOS: only available with the haptic engine. iPhone 6s minimum or Android)
+#### Nope Vibration
+
+Nope vibration: series of three weak booms (For iOS: only available with the haptic engine. iPhone 6s minimum or Android)
 
 `Vibration.VibrateNope();`
 
 
-**Android Only**
+### Android Only
 
-* Custom duration in milliseconds
+#### Custom duration in milliseconds
 
 `Vibration.Vibrate(500);` 
 
-* Pattern
+#### Pattern
 
 ```
 long [] pattern = { 0, 1000, 1000, 1000, 1000 };
 Vibration.Vibrate ( pattern, -1 );
 ```
 
-* Cancel
+#### Cancel
 
 `Vibration.Cancel();`
 
