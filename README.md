@@ -1,6 +1,6 @@
 # Vibration
 
-Native plugin for Unity for iOS and Android.
+Native **free** plugin for Unity for iOS and Android.
 Use custom vibrations on mobile.
 
 # Installation
