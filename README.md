@@ -3,6 +3,9 @@
 Native **free** plugin for Unity for iOS and Android.
 Use custom vibrations on mobile.
 
+If you like this free plugin, that's be cool if you can buy me a coffee 😀☕️
+Send tips to https://paypal.me/UnityVibrationPlugin
+
 # Installation
 
 Copy and paste the entire `Vibration` folder in your Unity3D `Assets` folder or download and import the `Vibration.unitypackage` file.
