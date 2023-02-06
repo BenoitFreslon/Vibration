@@ -32,6 +32,15 @@ public static class Vibration
 
     [DllImport ( "__Internal" )]
     private static extern void _VibrateNope ();
+
+    [DllImport("__Internal")]
+    private static extern void _impactOccurred(string style);
+
+    [DllImport("__Internal")]
+    private static extern void _notificationOccurred(string style);
+
+    [DllImport("__Internal")]
+    private static extern void _selectionChanged();
 #endif
 
 #if UNITY_ANDROID
@@ -68,6 +77,25 @@ public static class Vibration
 
         initialized = true;
     }
+
+#if UNITY_IOS
+    public static void VibrateIOS(ImpactFeedbackStyle style)
+    {
+        _impactOccurred(style.ToString());
+    }
+
+    public static void VibrateIOS(NotificationFeedbackStyle style)
+    {
+        _notificationOccurred(style.ToString());
+    }
+
+    public static void VibrateIOS_SelectionChanged()
+    {
+        _selectionChanged();
+    }    
+#endif
+
+
 
     ///<summary>
     /// Tiny pop vibration
@@ -111,17 +139,15 @@ public static class Vibration
     }
 
 
+#if UNITY_ANDROID
     ///<summary>
     /// Only on Android
     /// https://developer.android.com/reference/android/os/Vibrator.html#vibrate(long)
     ///</summary>
-    public static void Vibrate ( long milliseconds )
+    public static void VibrateAndroid ( long milliseconds )
     {
 
         if ( Application.isMobilePlatform ) {
-#if !UNITY_WEBGL
-#if UNITY_ANDROID
-
             if ( AndroidVersion >= 26 ) {
                 AndroidJavaObject createOneShot = vibrationEffect.CallStatic<AndroidJavaObject> ( "createOneShot", milliseconds, -1 );
                 vibrator.Call ( "vibrate", createOneShot );
@@ -129,12 +155,6 @@ public static class Vibration
             } else {
                 vibrator.Call ( "vibrate", milliseconds );
             }
-#elif UNITY_IOS
-        Handheld.Vibrate();
-#else
-        Handheld.Vibrate ();
-#endif
-#endif
         }
     }
 
@@ -142,11 +162,9 @@ public static class Vibration
     /// Only on Android
     /// https://proandroiddev.com/using-vibrate-in-android-b0e3ef5d5e07
     ///</summary>
-    public static void Vibrate ( long[] pattern, int repeat )
+    public static void VibrateAndroid ( long[] pattern, int repeat )
     {
         if ( Application.isMobilePlatform ) {
-#if UNITY_ANDROID
-
             if ( AndroidVersion >= 26 ) {
                 long[] amplitudes;
                 AndroidJavaObject createWaveform = vibrationEffect.CallStatic<AndroidJavaObject> ( "createWaveform", pattern, repeat );
@@ -155,18 +173,14 @@ public static class Vibration
             } else {
                 vibrator.Call ( "vibrate", pattern, repeat );
             }
-#elif UNITY_IOS
-        Handheld.Vibrate();
-#else
-        Handheld.Vibrate ();
-#endif
         }
     }
-
+#endif
+    
     ///<summary>
     ///Only on Android
     ///</summary>
-    public static void Cancel ()
+    public static void CancelAndroid ()
     {
         if ( Application.isMobilePlatform ) {
 #if UNITY_ANDROID
@@ -219,4 +233,20 @@ public static class Vibration
             return iVersionNumber;
         }
     }
+}
+
+public enum ImpactFeedbackStyle
+{
+    Heavy,
+    Medium,
+    Light,
+    Rigid,
+    Soft
+}
+
+public enum NotificationFeedbackStyle
+{
+    Error,
+    Success,
+    Warning
 }
