@@ -106,7 +106,7 @@ public static class Vibration
 #if UNITY_IOS
         _VibratePop ();
 #elif UNITY_ANDROID
-            Vibrate ( 50 );
+            VibrateAndroid ( 50 );
 #endif
         }
     }
@@ -119,7 +119,7 @@ public static class Vibration
 #if UNITY_IOS
         _VibratePeek ();
 #elif UNITY_ANDROID
-            Vibrate ( 100 );
+            VibrateAndroid ( 100 );
 #endif
         }
     }
@@ -133,7 +133,7 @@ public static class Vibration
         _VibrateNope ();
 #elif UNITY_ANDROID
             long[] pattern = { 0, 50, 50, 50 };
-            Vibrate ( pattern, -1 );
+            VibrateAndroid ( pattern, -1 );
 #endif
         }
     }
