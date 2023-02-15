@@ -41,7 +41,9 @@ public class VibrationExample : MonoBehaviour
 
     public void TapVibrateCustom ()
     {
-        Vibration.Vibrate ( int.Parse ( inputTime.text ) );
+#if UNITY_ANDROID
+        Vibration.VibrateAndroid ( int.Parse ( inputTime.text ) );
+#endif
     }
 
     public void TapVibratePattern ()
@@ -51,14 +53,16 @@ public class VibrationExample : MonoBehaviour
 
         Debug.Log ( longs.Length );
         //Vibration.Vibrate ( longs, int.Parse ( inputRepeat.text ) );
-
-        Vibration.Vibrate ( longs, int.Parse ( inputRepeat.text ) );
+#if UNITY_ANDROID
+        Vibration.VibrateAndroid ( longs, int.Parse ( inputRepeat.text ) );
+#endif
     }
 
     public void TapCancelVibrate ()
     {
-
-        Vibration.Cancel ();
+#if UNITY_ANDROID
+        Vibration.CancelAndroid();
+#endif
     }
 
     public void TapPopVibrate ()

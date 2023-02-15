@@ -44,8 +44,8 @@ Nope vibration: series of three weak booms (For iOS: only available with the hap
 
 `Vibration.VibrateNope();`
 
-
-### Android Only
+---
+## Android Only
 
 #### Custom duration in milliseconds
 
@@ -62,5 +62,28 @@ Vibration.Vibrate ( pattern, -1 );
 
 `Vibration.Cancel();`
 
+---
+## IOS only
+vibration using haptic engine
+
+> Haptic Engine
 
 
+`Vibration.VibrateIOS(ImpactFeedbackStyle.Light);`
+
+`Vibration.VibrateIOS(ImpactFeedbackStyle.Medium);`
+
+`Vibration.VibrateIOS(ImpactFeedbackStyle.Heavy);`
+
+`Vibration.VibrateIOS(ImpactFeedbackStyle.Rigid);`
+
+`Vibration.VibrateIOS(ImpactFeedbackStyle.Soft);`
+
+`Vibration.VibrateIOS(NotificationFeedbackStyle.Error);`
+
+`Vibration.VibrateIOS(NotificationFeedbackStyle.Success);`
+
+`Vibration.VibrateIOS(NotificationFeedbackStyle.Warning);`
+
+`Vibration.VibrateIOS_SelectionChanged();`
+```
