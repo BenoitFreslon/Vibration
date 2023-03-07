@@ -217,9 +217,13 @@ public static class Vibration
 
     public static void Vibrate ()
     {
+#if UNITY_ANDROID || UNITY_IOS
+        
         if ( Application.isMobilePlatform ) {
             Handheld.Vibrate ();
         }
+
+#endif
     }
 
     public static int AndroidVersion {
