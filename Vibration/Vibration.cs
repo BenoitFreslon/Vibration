@@ -78,27 +78,23 @@ public static class Vibration
         initialized = true;
     }
 
-
+#if UNITY_IOS
     public static void VibrateIOS(ImpactFeedbackStyle style)
     {
-#if UNITY_IOS
         _impactOccurred(style.ToString());
-#endif
     }
 
     public static void VibrateIOS(NotificationFeedbackStyle style)
     {
-#if UNITY_IOS
         _notificationOccurred(style.ToString());
-#endif
     }
 
     public static void VibrateIOS_SelectionChanged()
     {
-#if UNITY_IOS
         _selectionChanged();
+    }    
 #endif
-    }
+
 
 
     ///<summary>
@@ -180,11 +176,11 @@ public static class Vibration
         }
     }
 #endif
-
+    
     ///<summary>
     ///Only on Android
     ///</summary>
-    public static void CancelAndroid()
+    public static void CancelAndroid ()
     {
         if ( Application.isMobilePlatform ) {
 #if UNITY_ANDROID
