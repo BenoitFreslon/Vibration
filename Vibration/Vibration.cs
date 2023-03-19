@@ -78,22 +78,29 @@ public static class Vibration
         initialized = true;
     }
 
-#if UNITY_IOS
+
     public static void VibrateIOS(ImpactFeedbackStyle style)
     {
+#if UNITY_IOS
         _impactOccurred(style.ToString());
+#endif
     }
 
     public static void VibrateIOS(NotificationFeedbackStyle style)
     {
+#if UNITY_IOS
         _notificationOccurred(style.ToString());
+#endif
     }
 
     public static void VibrateIOS_SelectionChanged()
+    
     {
+#if UNITY_IOS
         _selectionChanged();
-    }    
 #endif
+    }    
+
 
 
 
