@@ -8,11 +8,19 @@ Send tips to https://paypal.me/UnityVibrationPlugin
 
 # Installation
 
-Copy and paste the entire `Vibration` folder in your Unity3D `Assets` folder or download and import the `Vibration.unitypackage` file.
+The minimal checked Unity Version is 2019.3.* LTS
+
+Open Package Manager and "Add package from git url..." using next string:
+* `https://github.com/BenoitFreslon/Vibration.git`
+
+You also can edit `Packages/manifest.json` manually, just add:
+* `"com.benoitfreslon.vibration": "https://github.com/BenoitFreslon/Vibration.git",`
+
+Or you can simply copy and paste the entire `Vibration` folder to your Unity3D `Assets` folder.
 
 # Use
 
-## Initiatlisation
+## Initialization
 
 Initialize the plugin with this line before using vibrations:
 
@@ -66,9 +74,6 @@ Vibration.Vibrate ( pattern, -1 );
 ## IOS only
 vibration using haptic engine
 
-> Haptic Engine
-
-
 `Vibration.VibrateIOS(ImpactFeedbackStyle.Light);`
 
 `Vibration.VibrateIOS(ImpactFeedbackStyle.Medium);`
@@ -86,4 +91,3 @@ vibration using haptic engine
 `Vibration.VibrateIOS(NotificationFeedbackStyle.Warning);`
 
 `Vibration.VibrateIOS_SelectionChanged();`
-```
