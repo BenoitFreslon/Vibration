@@ -1,0 +1,13 @@
+{
+  "name": "com.benoitfreslon.vibration",
+  "author": "Benoit Freslon, AminSojoudi, SH42913",
+  "displayName": "Vibration",
+  "description": "Native free plugin for Unity for iOS and Android. Use custom vibrations on mobile.",
+  "unity": "2019.3",
+  "version": "2023.1.1",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BenoitFreslon/Vibration"
+  }
+}
