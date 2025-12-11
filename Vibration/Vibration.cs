@@ -8,9 +8,14 @@
 
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
+using System.Threading.Tasks;
+
 
 #if UNITY_IOS
 using System.Collections;
+#endif
+
+#if UNITY_WEBGL
 using System.Runtime.InteropServices;
 #endif
 
@@ -52,6 +57,12 @@ public static class Vibration
     public static AndroidJavaClass vibrationEffect;
 
 
+#endif
+
+#if UNITY_WEBGL
+    [DllImport("__Internal")]
+    private static extern void VibrateWebgl(int ms);
+    
 #endif
 
     private static bool initialized = false;
@@ -114,6 +125,8 @@ public static class Vibration
         _VibratePop ();
 #elif UNITY_ANDROID
             VibrateAndroid ( 50 );
+#elif UNITY_WEBGL
+            VibrateWebgl ( 50 );
 #endif
         }
     }
@@ -127,13 +140,15 @@ public static class Vibration
         _VibratePeek ();
 #elif UNITY_ANDROID
             VibrateAndroid ( 100 );
+#elif UNITY_WEBGL
+            VibrateWebgl ( 100 );
 #endif
         }
     }
     ///<summary>
     /// 3 small vibrations
     ///</summary>
-    public static void VibrateNope ()
+    public static async Task VibrateNope ()
     {
         if ( Application.isMobilePlatform ) {
 #if UNITY_IOS
@@ -141,7 +156,16 @@ public static class Vibration
 #elif UNITY_ANDROID
             long[] pattern = { 0, 50, 50, 50 };
             VibrateAndroid ( pattern, -1 );
+#elif UNITY_WEBGL
+            VibrateWebgl ( 50 );
+            for (int i = 0; i < 50; i++)
+                await Task.Yield ();
+            VibrateWebgl ( 50 );
+            for (int i = 0; i < 50; i++)
+                await Task.Yield ();
+            VibrateWebgl ( 50 );
 #endif
+
         }
     }
 
@@ -199,7 +223,9 @@ public static class Vibration
     public static bool HasVibrator ()
     {
         if ( Application.isMobilePlatform ) {
-
+#if UNITY_WEBGL
+        return true;
+#endif
 #if UNITY_ANDROID
 
             AndroidJavaClass contextClass = new AndroidJavaClass ( "android.content.Context" );
@@ -230,6 +256,10 @@ public static class Vibration
             Handheld.Vibrate ();
         }
 
+#elif UNITY_WEBGL
+        if ( Application.isMobilePlatform ) {
+            VibrateWebgl ( 1000 );      
+        }
 #endif
     }
 
