@@ -248,20 +248,14 @@ public static class Vibration
     }
 
 
-    public static void Vibrate2 ()
-    {
-            VibrateWebgl ( 1000 );      
-    }
     public static void Vibrate ()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        
         if ( Application.isMobilePlatform ) {
             Handheld.Vibrate ();
         }
-
 #elif UNITY_WEBGL
-        if ( !Application.isEditor ) {
+        if ( Application.isMobilePlatform ) {
             VibrateWebgl ( 1 );      
         }
 #endif
