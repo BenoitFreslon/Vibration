@@ -6,13 +6,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+using System.Threading.Tasks;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
-using System.Threading.Tasks;
-
 
 #if UNITY_IOS
 using System.Collections;
+using System.Runtime.InteropServices;
 #endif
 
 #if UNITY_WEBGL
@@ -21,7 +21,6 @@ using System.Runtime.InteropServices;
 
 public static class Vibration
 {
-
 #if UNITY_IOS
     [DllImport ( "__Internal" )]
     private static extern bool _HasVibrator ();
@@ -49,29 +48,24 @@ public static class Vibration
 #endif
 
 #if UNITY_ANDROID
-    public static AndroidJavaClass unityPlayer;
     public static AndroidJavaObject currentActivity;
     public static AndroidJavaObject vibrator;
     public static AndroidJavaObject context;
 
+    public static AndroidJavaClass unityPlayer;
     public static AndroidJavaClass vibrationEffect;
-
-
 #endif
 
 #if UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern void VibrateWebgl(int ms);
-    
 #endif
 
     private static bool initialized = false;
     public static void Init ()
     {
         if ( initialized ) return;
-
 #if UNITY_ANDROID
-
         if ( Application.isMobilePlatform ) {
 
             unityPlayer = new AndroidJavaClass ( "com.unity3d.player.UnityPlayer" );
@@ -85,10 +79,8 @@ public static class Vibration
 
         }
 #endif
-
         initialized = true;
     }
-
 
     public static void VibrateIOS(ImpactFeedbackStyle style)
     {
@@ -105,15 +97,11 @@ public static class Vibration
     }
 
     public static void VibrateIOS_SelectionChanged()
-    
     {
 #if UNITY_IOS
         _selectionChanged();
 #endif
-    }    
-
-
-
+    }
 
     ///<summary>
     /// Tiny pop vibration
@@ -130,6 +118,7 @@ public static class Vibration
 #endif
         }
     }
+
     ///<summary>
     /// Small peek vibration
     ///</summary>
@@ -145,6 +134,7 @@ public static class Vibration
 #endif
         }
     }
+
     ///<summary>
     /// 3 small vibrations
     ///</summary>
@@ -169,7 +159,6 @@ public static class Vibration
         }
     }
 
-
 #if UNITY_ANDROID
     ///<summary>
     /// Only on Android
@@ -177,7 +166,6 @@ public static class Vibration
     ///</summary>
     public static void VibrateAndroid ( long milliseconds )
     {
-
         if ( Application.isMobilePlatform ) {
             if ( AndroidVersion >= 26 ) {
                 AndroidJavaObject createOneShot = vibrationEffect.CallStatic<AndroidJavaObject> ( "createOneShot", milliseconds, -1 );
@@ -226,8 +214,8 @@ public static class Vibration
 #if UNITY_WEBGL
         return true;
 #endif
-#if UNITY_ANDROID
 
+#if UNITY_ANDROID
             AndroidJavaClass contextClass = new AndroidJavaClass ( "android.content.Context" );
             string Context_VIBRATOR_SERVICE = contextClass.GetStatic<string> ( "VIBRATOR_SERVICE" );
             AndroidJavaObject systemService = context.Call<AndroidJavaObject> ( "getSystemService", Context_VIBRATOR_SERVICE );
@@ -236,7 +224,6 @@ public static class Vibration
             } else {
                 return false;
             }
-
 #elif UNITY_IOS
         return _HasVibrator ();
 #else
