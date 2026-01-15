@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 #if UNITY_IOS
 using System.Collections;
+using System.Runtime.InteropServices;
 #endif
 
 #if UNITY_WEBGL
