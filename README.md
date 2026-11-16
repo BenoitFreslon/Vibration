@@ -52,23 +52,32 @@ Nope vibration: series of three weak booms (For iOS: only available with the hap
 
 `Vibration.VibrateNope();`
 
+#### Light feedback
+
+`Vibration.VibrateLight();`
+
 ---
 ## Android Only
 
 #### Custom duration in milliseconds
 
-`Vibration.Vibrate(500);` 
+`Vibration.VibrateAndroid(500);`
 
 #### Pattern
 
 ```
-long [] pattern = { 0, 1000, 1000, 1000, 1000 };
-Vibration.Vibrate ( pattern, -1 );
+long[] pattern = { 0, 1000, 1000, 1000, 1000 };
+Vibration.VibrateAndroid(pattern, -1);
 ```
 
 #### Cancel
 
-`Vibration.Cancel();`
+`Vibration.CancelAndroid();`
+
+---
+## WebGL
+
+Vibration is available only in browsers that expose the Web Vibration API; browser and user-gesture restrictions may prevent it from running.
 
 ---
 ## IOS only
